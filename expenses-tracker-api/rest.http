@@ -1,0 +1,9 @@
+#================== User API ================#
+
+### Create user API end point
+POST http://localhost:8000/api/v1/user
+
+
+
+
+#================== Expenses API ================#
