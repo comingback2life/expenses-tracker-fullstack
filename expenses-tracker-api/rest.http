@@ -1,9 +1,29 @@
 #================== User API ================#
 
-### Create user API end point
+### GET USER
+GET http://localhost:8000/api/v1/user
+
+### Register User
+
 POST http://localhost:8000/api/v1/user
+Content-Type: application/json
+
+{
+  "name":"John Doe",
+  "email":"johnnydoe@emale.com",
+  "password":"123456"
+}
 
 
+### Login  USER 
+POST http://localhost:8000/api/v1/user/login
+Content-Type: application/json
+
+{
+  "name":"John Doe",
+  "email":"johnnydoe@emale.com",
+  "password":"123456"
+}
 
 
 #================== Expenses API ================#
