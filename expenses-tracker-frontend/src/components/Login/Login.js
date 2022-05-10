@@ -18,13 +18,13 @@ export const Login = () => {
     const {data}= await postLogin({email,password});
     setLoading(false);
   
-    if(data.status==="success"){
+    if(data.status==="success" && data.user){
       const {name,email,_id} = data.user;
       sessionStorage.setItem('user',JSON.stringify({name,email,_id}));
   //if Login is successful, store user data in session storage
     }
     setErorr(data.message);
-    console.log(data);
+    console.log(data.message);
   }
   return (
     <div className="login-comp mt-5">
