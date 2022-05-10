@@ -5,7 +5,7 @@ import { Login } from '../components/login/Login';
 export const LoginPage = () => {
   return (
     <MainLayout>
-     <Login></Login>
+     <Login/>
       </MainLayout>
   )
 }

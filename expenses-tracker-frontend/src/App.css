@@ -15,4 +15,5 @@ color: black !important;
   padding: 1rem;
   border-radius: 5px;
   min-height: 250px;
+  min-width: 300px;
 }
