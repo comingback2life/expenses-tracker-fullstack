@@ -1,7 +1,13 @@
-import React from 'react'
+import {useState,React} from 'react'
 import { Button, Form } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+const initialFormState = {
+   name:"",
+   email:"",
+   password:"",
+}
 export const Register = () => {
+  const [formData,setFormData]= useState([]);
   return (
     <div className="login-comp mt-5">
     <Form>
