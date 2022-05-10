@@ -1,5 +1,5 @@
 import {React,useRef,useState} from 'react'
-import { Button, Form } from 'react-bootstrap';
+import { Alert, Button, Form, Spinner } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { postLogin } from '../helpers/axiosHelper';
@@ -23,17 +23,24 @@ export const Login = () => {
     if(data.status==="success" && data.user){
       const {name,email,_id} = data.user;
       sessionStorage.setItem('user',JSON.stringify({name,email,_id}));
+      setErorr("");
       navigate('/dashboard');
   //if Login is successful, store user data in session storage
+       return;
     }
     setErorr(data.message);
-    console.log(data.message);
   }
   return (
     <div className="login-comp mt-5">
     <Form>
       <h4>Welcome Back 🥳</h4>
       <hr/>
+      {
+        loading && <Spinner animation="border" variant="primary"/>
+      }
+      {
+        error && <Alert variant='danger'>{error}</Alert>
+      }
   <Form.Group className="mb-3" controlId="formBasicEmail">
     <Form.Label>Email address</Form.Label>
     <Form.Control ref={emailRef} type="email" placeholder="Enter email" required />
