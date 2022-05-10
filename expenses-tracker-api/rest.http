@@ -34,12 +34,12 @@ GET http://localhost:8000/api/v1/expenses
 ###POST expenses
 POST http://localhost:8000/api/v1/expenses
 Content-Type: application/json
+Authorization: 6279e0c2a4dc02f726658bd1
 
 {
-  "title":"Momo",
-  "amount":"$10",
-  "date":"2020-01-02",
-  "userID":"6279e0c2a4dc02f726658bd1"
+  "name":"Momo",
+  "amount":10,
+  "date":"2020-01-02"
 }
 
 ###DELETE expenses
