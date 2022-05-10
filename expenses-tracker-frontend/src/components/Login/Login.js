@@ -1,13 +1,15 @@
 import {React,useRef,useState} from 'react'
 import { Button, Form } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { postLogin } from '../helpers/axiosHelper';
+
 export const Login = () => {
   const emailRef=useRef("");
   const passwordRef=useRef("");
   const [error,setErorr]= useState("");
   const [loading,setLoading]=useState("");
-
+  let navigate = useNavigate();
   const handleOnSubmit = async () =>{
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
@@ -21,6 +23,7 @@ export const Login = () => {
     if(data.status==="success" && data.user){
       const {name,email,_id} = data.user;
       sessionStorage.setItem('user',JSON.stringify({name,email,_id}));
+      navigate('/dashboard');
   //if Login is successful, store user data in session storage
     }
     setErorr(data.message);
