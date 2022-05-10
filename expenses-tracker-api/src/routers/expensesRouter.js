@@ -1,4 +1,5 @@
 import express from 'express';
+import { createExpense } from '../model/expensesModel/Expenses.model.js';
 const router = express.Router();
 
 //get 
@@ -10,11 +11,20 @@ router.get('/',(req,res)=>{
 
 
 //post
-router.post('/',(req,res)=>{
-  console.log(req.body)
+router.post('/',async (req,res)=>{
+try{
+  const result = await createExpense(req.body);
+
   res.json({
     message:"Welcome to expenses API post"
   })
+}catch(error){
+  console.log(error)
+  res.json({
+    status:"Error",
+    message:error.message
+  })
+}
 })
 
 //delete

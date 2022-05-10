@@ -11,3 +11,7 @@ export const createExpense = (expense)=>{
 export const getExpenses = (filter)=>{
   return ExpensesSchema.find(filter);
 }
+//filter must be an object with userID and expensesID.
+export const deleteExpense = (filter)=>{
+  return ExpensesSchema.findOneAndDelete(filter);
+}
