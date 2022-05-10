@@ -27,3 +27,7 @@ Content-Type: application/json
 
 
 #================== Expenses API ================#
+
+###GET expenses
+GET http://localhost:8000/api/v1/expenses
+

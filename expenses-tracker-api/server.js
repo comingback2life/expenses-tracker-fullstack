@@ -18,7 +18,9 @@ import { connectDB } from './src/config/db.js';
 connectDB();
 
 import userRouter from './src/routers/userRouter.js';
+import expensesRouter from './src/routers/expensesRouter.js'
 app.use('/api/v1/user', userRouter);
+app.use('/api/v1/expenses',expensesRouter);
 app.get('*', (req, res) => {
   res.status(404).send(`<h1>404, not found</h1>`);
 });
