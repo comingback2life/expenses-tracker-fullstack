@@ -11,7 +11,7 @@ color: black !important;
 }
 .login-comp form{
   background-color: #f0f5ff;
-  border:1px #023047 solid;
+  border:1px #023047 dotted;
   padding: 1rem;
   border-radius: 5px;
   min-height: 250px;

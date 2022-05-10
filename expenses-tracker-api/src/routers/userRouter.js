@@ -10,6 +10,7 @@ router.post('/login',async (req,res)=>{
     user?._id?
     res.json({
       status:"success",
+      message:'User created successfully, you can login now!',
       user,
     }) : res.json({
       status:"success",
