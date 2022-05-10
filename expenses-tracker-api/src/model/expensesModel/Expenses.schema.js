@@ -24,4 +24,4 @@ const ExpensesSchema = new mongoose.Schema({
 }
 )
 
-export default expensesList = mongoose.model('Expense',ExpensesSchema)
+export default  mongoose.model('Expense',ExpensesSchema);
