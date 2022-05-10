@@ -13,7 +13,7 @@ export const Dashboard = () => {
   },[navigate])
   return (
     <MainLayout>
-      <div>Dashboard</div>
+      <h4 className='display-7'>Dashboard</h4>
       <hr/>
       <ExpensesForm/>
       <ExpensesTable/>

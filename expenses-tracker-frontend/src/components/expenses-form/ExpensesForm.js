@@ -4,7 +4,7 @@ import { Button, Col, Form, Row } from 'react-bootstrap';
 export const ExpensesForm = () => {
   return (
     <div>
-      <Row className='g-3 mt-3 mb-3 p-3 border rounded-top'>
+      <Row className='bg-light g-3 mt-3 mb-3 p-4 border rounded-top'>
         <Col md={4}>
           <Form.Control 
           type="text"
