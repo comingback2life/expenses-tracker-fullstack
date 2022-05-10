@@ -10,7 +10,8 @@ color: black !important;
   align-items: center;
 }
 .login-comp form{
-  background-color: #bde0fe;
+  background-color: #f0f5ff;
+  border:1px #023047 solid;
   padding: 1rem;
   border-radius: 5px;
   min-height: 250px;
