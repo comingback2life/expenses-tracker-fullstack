@@ -11,6 +11,7 @@ router.get('/',(req,res)=>{
 
 //post
 router.post('/',(req,res)=>{
+  console.log(req.body)
   res.json({
     message:"Welcome to expenses API post"
   })
