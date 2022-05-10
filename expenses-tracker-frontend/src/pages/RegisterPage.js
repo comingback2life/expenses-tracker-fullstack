@@ -1,10 +1,8 @@
 import React from 'react'
 import { MainLayout } from '../components/Layout/MainLayout';
 
-export const Login = () => {
+export const RegisterPage = () => {
   return (
-    <MainLayout>
-      Login Page
-      </MainLayout>
+    <MainLayout>Register</MainLayout>
   )
 }
