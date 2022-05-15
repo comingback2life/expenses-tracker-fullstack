@@ -1,35 +1,68 @@
-import React from 'react'
+import React ,{useState} from 'react'
 import { Button, Col, Form, Row } from 'react-bootstrap';
 
-export const ExpensesForm = () => {
+const initialState = {
+  name:"",
+  amount:"",
+  date:"",
+}
+export const ExpensesForm = ({handleOnPostData}) => {
+  
+  const [formData, setFormData]= useState(initialState);
+
+  const handleOnChange = (e)=>{
+    const {name,value}=e.target;
+    setFormData({
+      ...formData,
+      [name]:value,
+    })
+  }
+
+  const handleOnSubmit = (e)=>{
+    e.preventDefault();
+    handleOnPostData(formData);
+  }
+
+ 
   return (
     <div>
-      <Form>
+      <Form onSubmit ={handleOnSubmit}>
       <Row className='bg-light g-3 mt-3 mb-3 p-4 border rounded-top'>
         <Col md={4}>
           <Form.Control 
           type="text"
-          class="form-control"
+          className="form-control"
+          name="name"
           placeholder="Expenses Title"
+          onChange={handleOnChange}
+          required
           aria-label="Expenses Title">
+            
           </Form.Control>
         </Col>
         <Col md={2}>
           <Form.Control 
           type="number"
-          class="form-control"
+          className="form-control"
           placeholder="Amount"
-          aria-label="Amount">
+          aria-label="Amount"
+          name="amount"
+          onChange={handleOnChange}
+          required>
+            
           </Form.Control>
         </Col>
         <Col md={4}>
           <Form.Control 
           type="date"
-          class="form-control">
+          className="form-control"
+          name="date"
+          onChange={handleOnChange}
+          required>
           </Form.Control>
         </Col>
         <Col md={2}>
-          <Button variant="btn btn-outline-dark">Add Expense</Button>
+          <Button variant="btn btn-outline-dark" type ="submit" onSubmit={handleOnSubmit}>Add Expense</Button>
         </Col>
       </Row>
       </Form>

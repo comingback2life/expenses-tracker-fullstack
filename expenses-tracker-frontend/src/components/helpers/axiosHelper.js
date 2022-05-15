@@ -2,6 +2,7 @@ import axios from 'axios';
 const rootUrl= 'http://localhost:8000/api/v1';
 const userApi = rootUrl+"/user";
 const userLogin= rootUrl+'/user/login';
+const expensesAPI = "http://localhost:8000/api/v1/expenses"
 
 export const postRegister =  userData =>{
   try{
@@ -23,5 +24,19 @@ export const postLogin =  userData =>{
       message: error.message,
     };
     return data
+  }
+}
+export const postExpenses = async formData =>{
+  try{
+    const {data} = await axios.post(expensesAPI, formData);
+    return data;
+  }catch(error){
+    console.log(error.message);
+    return {
+      data:{
+        status:"Error",
+        message:"Unexpected Error Occured"
+      }
+    }
   }
 }

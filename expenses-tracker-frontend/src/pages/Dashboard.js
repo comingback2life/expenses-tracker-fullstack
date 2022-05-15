@@ -11,11 +11,15 @@ export const Dashboard = () => {
       navigate('/');
     }
   },[navigate])
+
+  const handleOnPostData = (e)=>{
+
+  }
   return (
     <MainLayout>
       <h4 className='display-7'>Dashboard</h4>
       <hr/>
-      <ExpensesForm/>
+      <ExpensesForm handleOnPostData={handleOnPostData}/>
       <ExpensesTable/>
     </MainLayout>
   )
