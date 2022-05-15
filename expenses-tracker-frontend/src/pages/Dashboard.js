@@ -13,7 +13,7 @@ export const Dashboard = () => {
   },[navigate])
 
   const handleOnPostData = (e)=>{
-
+    console.log(e);
   }
   return (
     <MainLayout>
