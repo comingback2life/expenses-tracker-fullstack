@@ -3,15 +3,19 @@ import { MainLayout } from '../components/Layout/MainLayout';
 import { useNavigate } from 'react-router-dom';
 import { ExpensesForm } from '../components/expenses-form/ExpensesForm';
 import { ExpensesTable } from '../components/expenses-form/ExpensesTable';
-import { postExpenses } from '../components/helpers/axiosHelper';
+import { getUserExpenses, postExpenses } from '../components/helpers/axiosHelper';
 import { Alert, Col, Row, Spinner } from 'react-bootstrap';
 export const Dashboard = () => {
   const [response, setResponse] = useState({
     status:"",
     message: ""
   });
+
+
   const [loading,setLoading]=useState(false);
   const navigate =useNavigate();
+
+
   useEffect(()=>{
     const user = JSON.parse(sessionStorage.getItem('user'));
     if(!user?._id){
@@ -19,12 +23,18 @@ export const Dashboard = () => {
     }
   },[navigate])
 
+
+
   const handleOnPostData = async (formData)=>{
     setLoading(true);
     const {data} = await postExpenses(formData);
     setLoading(false);
     console.log('here',data.message)
     setResponse(data)
+  }
+
+  const fetchExpenses = async () =>{
+    const data = await getUserExpenses();
   }
   return (
     <MainLayout>
