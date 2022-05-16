@@ -1,5 +1,5 @@
 import express from 'express';
-import { createExpense, getExpenses } from '../model/expensesModel/Expenses.model.js';
+import { createExpense, deleteExpense, getExpenses } from '../model/expensesModel/Expenses.model.js';
 const router = express.Router();
 
 //get 
@@ -48,7 +48,11 @@ try{
 
 //delete
 
-router.delete('/',(req,res)=>{
+router.delete('/',async (req,res)=>{
+    const {authorization}= req.headers;
+    const expensesToDelete = await deleteExpense({...req.body,userID:authorization});
+    console.log(expensesToDelete,"K ");
+    
   res.json({
     message:"Welcome to expenses API delete"
   })

@@ -37,11 +37,8 @@ export const Dashboard = () => {
   }
 
   const fetchExpenses = async () =>{
-
       const {data} = await getUserExpenses();
       data?.status==='success' && setExpensesList(data.getUserExpenses)
-    
-    
   }
   return (
     <MainLayout>
