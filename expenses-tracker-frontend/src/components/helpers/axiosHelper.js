@@ -46,10 +46,10 @@ export const postExpenses = async formData =>{
   }
 }
 
-export const getUserExpenses = async formData =>{
+export const getUserExpenses = async () =>{
   try{
     const user = JSON.parse(sessionStorage.getItem('user'));
-    const data = await axios.get(expensesAPI, formData,{
+    const data = await axios.get(expensesAPI,{
       headers:{
       Authorization: user._id,
       }

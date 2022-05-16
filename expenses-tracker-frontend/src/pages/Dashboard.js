@@ -11,6 +11,8 @@ export const Dashboard = () => {
     message: ""
   });
 
+  const [expensesList,setExpensesList]= useState([]);
+
 
   const [loading,setLoading]=useState(false);
   const navigate =useNavigate();
@@ -21,6 +23,7 @@ export const Dashboard = () => {
     if(!user?._id){
       navigate('/');
     }
+    fetchExpenses();
   },[navigate])
 
 
@@ -29,12 +32,16 @@ export const Dashboard = () => {
     setLoading(true);
     const {data} = await postExpenses(formData);
     setLoading(false);
-    console.log('here',data.message)
     setResponse(data)
+    data.status==='success' && fetchExpenses();
   }
 
   const fetchExpenses = async () =>{
-    const data = await getUserExpenses();
+
+      const {data} = await getUserExpenses();
+      data?.status==='success' && setExpensesList(data.getUserExpenses)
+    
+    
   }
   return (
     <MainLayout>
@@ -52,7 +59,7 @@ export const Dashboard = () => {
         </Col>
       </Row>
       <ExpensesForm handleOnPostData={handleOnPostData}/>
-      <ExpensesTable/>
+      <ExpensesTable expensesList={expensesList}/>
     </MainLayout>
   )
 }

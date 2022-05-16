@@ -48,7 +48,7 @@ export const Login = () => {
 
   <Form.Group className="mb-3" controlId="formBasicPassword">
     <Form.Label>Password</Form.Label>
-    <Form.Control ref ={passwordRef} type="password" placeholder="Password" required />
+    <Form.Control ref ={passwordRef} type="password" placeholder="Password" autoComplete="on" required />
   </Form.Group>
   <Button variant="primary"  onClick={handleOnSubmit}>
   Login 🌝
