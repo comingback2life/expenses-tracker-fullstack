@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Button, ListGroup } from 'react-bootstrap';
-export const ExpensesTable = ({ expensesList }) => {
+import { Alert, Button, ListGroup } from 'react-bootstrap';
+import { deleteExpense } from '../helpers/axiosHelper';
+export const ExpensesTable = ({ expensesList,handleOnDeleteClick }) => {
+
   const total=expensesList.reduce((acc,item)=>acc+item.amount,0)
-  const handleOnDeleteClick= async (postID)=>{
-    console.log(postID);
-  }
+
   return (
     <div>
       <ListGroup variant="flush mt-5 mb-5">
