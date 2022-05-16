@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { ListGroup } from 'react-bootstrap';
-
+import { Button, ListGroup } from 'react-bootstrap';
 export const ExpensesTable = ({ expensesList }) => {
-
   const total=expensesList.reduce((acc,item)=>acc+item.amount,0)
-
+  const handleOnDeleteClick= async (postID)=>{
+    console.log(postID);
+  }
   return (
     <div>
       <ListGroup variant="flush mt-5 mb-5">
@@ -17,6 +17,7 @@ export const ExpensesTable = ({ expensesList }) => {
             <ListGroup.Item key={i}>
             <span className="title">{el.name}</span>
             <span className="amount">${el.amount}</span>
+            <Button onClick={()=>handleOnDeleteClick(el._id)}>Delete Me</Button>
           </ListGroup.Item>
           )
             
