@@ -48,14 +48,25 @@ try{
 
 //delete
 
-router.delete('/',async (req,res)=>{
-    const {authorization,_id}= req.headers;
-    const expensesToDelete = await deleteExpense({userID:authorization});
-    console.log(expensesToDelete,"K ");
-    
-  res.json({
-    message:"Welcome to expenses API delete"
+router.delete('/:_id',async (req,res)=>{
+    try{
+      const {_id} = req.params;
+      const {authorization}= req.headers; 
+    const expensesToDelete = await deleteExpense({userID:authorization,_id});
+      expensesToDelete ? res.json({
+      status:"success",
+      message:"Deleted Expenses Successfully"
+    }):
+     res.json({
+    status:"success",
+    message:"Sorry, could not delete",
   })
+    }catch(Error){
+       res.json({
+        status:"Error",
+        message:"Please do not access this, it's not your post"
+      })
+    }
 })
 
 
