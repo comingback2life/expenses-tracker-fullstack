@@ -41,6 +41,7 @@ export const Dashboard = () => {
       data?.status==='success' && setExpensesList(data.getUserExpenses)
   }
   const handleOnDeleteClick= async (postID)=>{
+    if(!window.confirm("Do you really want to delete ?")) return;
     const {data} = await deleteExpense(postID);
     data ?.status==="success" && fetchExpenses();
   }
