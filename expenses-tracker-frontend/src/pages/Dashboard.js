@@ -21,8 +21,9 @@ export const Dashboard = () => {
 
   const handleOnPostData = async (formData)=>{
     setLoading(true);
-    const data = await postExpenses(formData);
+    const {data} = await postExpenses(formData);
     setLoading(false);
+    console.log('here',data.message)
     setResponse(data)
   }
   return (
