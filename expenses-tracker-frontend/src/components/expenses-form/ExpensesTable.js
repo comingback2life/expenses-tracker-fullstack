@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { Alert, Button, ListGroup } from 'react-bootstrap';
-import { deleteExpense } from '../helpers/axiosHelper';
+import React from 'react';
+import {  Button, ListGroup } from 'react-bootstrap';
 export const ExpensesTable = ({ expensesList,handleOnDeleteClick }) => {
 
   const total=expensesList.reduce((acc,item)=>acc+item.amount,0)
