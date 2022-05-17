@@ -1,10 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit';
-const intialState={
+import userReducer from './components/register/userSlice'
 
-}
+
 const store = configureStore({
   reducer:{
-    test:0
+    user: userReducer
   }
 })
 export default store;

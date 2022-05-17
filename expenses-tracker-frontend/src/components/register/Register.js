@@ -1,17 +1,21 @@
-import {useState,React} from 'react'
+import {useState} from 'react'
 import { Alert, Button, Form, Spinner } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import { postRegister } from '../helpers/axiosHelper';
+import {useDispatch,useSelector} from 'react-redux';
+import {isLoadingPending,setResponse} from './userSlice.js'
+
 const initialFormState = {
    name:"",
    email:"",
    password:"",
 } //we may need it to reset our formData.
 export const Register = () => {
+  const dispatch = useDispatch();
   const [formData,setFormData]= useState(initialFormState);
-  const [isLoading,setIsLoading]=useState(false);
-  const [res,setRes]= useState({});
-
+  // const [isLoading,setIsLoading]=useState(false);
+  // const [res,setRes]= useState({});
+   const{res,isLoading} =useSelector(state=>state.user);
 
   const handleOnChange = (e)=>{
       const {name,value} = e.target; //name of the input field and the value from the event.
@@ -22,10 +26,10 @@ export const Register = () => {
   }
   const handleOnSubmit = async e=>{
     e.preventDefault();
-    setIsLoading(true);
+    dispatch(isLoadingPending(true))
     const {data} = await postRegister(formData)
-    setRes(data);
-    setIsLoading(false);
+    dispatch(setResponse(data));
+    dispatch(isLoadingPending(false))
     console.log(data)
   }
   return (
