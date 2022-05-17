@@ -23,7 +23,11 @@ const userSlice = createSlice({
     },
     loginSuccessResponse:(state,action)=>{
       state.isLoading=false;
-      state.user= action.payload
+      state.user= action.payload;
+      state.res={
+        status:"",
+        message:""
+      };
     }
   }
 })
