@@ -29,7 +29,6 @@ export const Register = () => {
     dispatch(isLoadingPending(true))
     const {data} = await postRegister(formData)
     dispatch(setResponse(data));
-    dispatch(isLoadingPending(false))
     console.log(data)
   }
   return (

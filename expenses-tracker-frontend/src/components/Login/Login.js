@@ -3,32 +3,39 @@ import { Alert, Button, Form, Spinner } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { postLogin } from '../helpers/axiosHelper';
-
+import { loginSuccessResponse,setResponse,isLoadingPending } from '../register/userSlice';
+import { useDispatch,useSelector} from 'react-redux';
 export const Login = () => {
+  const dispatch = useDispatch();
+  const {res,isLoading}=useSelector((state)=>state.user)
   const emailRef=useRef("");
   const passwordRef=useRef("");
-  const [error,setErorr]= useState("");
-  const [loading,setLoading]=useState("");
+
   let navigate = useNavigate();
+
+
   const handleOnSubmit = async () =>{
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
+ 
     if(!email || !password){
       return alert("Please enter the email and password");
     }
-    setLoading(true);
+    
+    // setLoading(true);
+    dispatch(isLoadingPending(true));
     const {data}= await postLogin({email,password});
-    setLoading(false);
+ 
   
     if(data.status==="success" && data.user){
       const {name,email,_id} = data.user;
+      dispatch(loginSuccessResponse(data.user));
       sessionStorage.setItem('user',JSON.stringify({name,email,_id}));
-      setErorr("");
       navigate('/dashboard');
   //if Login is successful, store user data in session storage
        return;
     }
-    setErorr(data.message);
+    dispatch(setResponse(data))
   }
   return (
     <div className="login-comp mt-5">
@@ -36,10 +43,10 @@ export const Login = () => {
       <h4>Welcome Back 🥳</h4>
       <hr/>
       {
-        loading && <Spinner animation="border" variant="primary"/>
+        isLoading && <Spinner animation="border" variant="primary"/>
       }
       {
-        error && <Alert variant='danger'>{error}</Alert>
+        res?.message && <Alert variant='danger'>{res?.message}</Alert>
       }
   <Form.Group className="mb-3" controlId="formBasicEmail">
     <Form.Label>Email address</Form.Label>

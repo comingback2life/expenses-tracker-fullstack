@@ -18,13 +18,16 @@ const userSlice = createSlice({
       state.isLoading = true;
     },
     setResponse : (state,action)=>{
-      state.isLoading=false
+      state.isLoading=false;
       state.res= action.payload //argument that has been passed by different functions stays in payLoad,
-     
+    },
+    loginSuccessResponse:(state,action)=>{
+      state.isLoading=false;
+      state.user= action.payload
     }
   }
 })
 
 const {actions,reducer} = userSlice;
-export const {isLoadingPending,setResponse}= actions;
+export const {isLoadingPending,setResponse,loginSuccessResponse}= actions;
 export default reducer;
