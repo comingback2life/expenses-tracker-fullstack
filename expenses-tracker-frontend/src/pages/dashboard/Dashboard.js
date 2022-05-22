@@ -1,9 +1,9 @@
 import React,{useEffect, useState} from 'react'
-import { MainLayout } from '../components/Layout/MainLayout';
+import { MainLayout } from '../../components/Layout/MainLayout';
 import { useNavigate } from 'react-router-dom';
-import { ExpensesForm } from '../components/expenses-form/ExpensesForm';
-import { ExpensesTable } from '../components/expenses-form/ExpensesTable';
-import { getUserExpenses, postExpenses,deleteExpense } from '../components/helpers/axiosHelper';
+import { ExpensesForm } from '../../components/expenses-form/ExpensesForm';
+import { ExpensesTable } from '../../components/expenses-form/ExpensesTable';
+import { getUserExpenses, postExpenses,deleteExpense } from '../../components/helpers/axiosHelper';
 import { Alert, Col, Row, Spinner } from 'react-bootstrap';
 export const Dashboard = () => {
   const [response, setResponse] = useState({
@@ -43,7 +43,7 @@ export const Dashboard = () => {
   const handleOnDeleteClick= async (postID)=>{
     if(!window.confirm("Do you really want to delete ?")) return;
     const {data} = await deleteExpense(postID);
-    data ?.status==="success" && fetchExpenses();
+    data?.status==="success" && fetchExpenses();
   }
   return (
     <MainLayout>
