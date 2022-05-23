@@ -1,15 +1,16 @@
-import { getUserExpenses } from "../../components/helpers/axiosHelper";
-import {setExpenses} from './dashboardSlice';
+import { getUserExpenses,postExpenses} from "../../components/helpers/axiosHelper";
+import {requestPending, setExpenses, setResponse} from './dashboardSlice';
 export const fetchExpenses =  () => async (dispatch) =>{
+  dispatch(requestPending());
   const {data} = await getUserExpenses();
   console.log(data)
     data.status==="success" && dispatch(setExpenses(data.getUserExpenses));
   // data?.status==='success' && setExpensesList(data.getUserExpenses)
 }
 export const handleOnPostData = (formData)=> async dispatch=>{
-  setLoading(true);
+  dispatch(requestPending());
+  // setLoading(true);
   const {data} = await postExpenses(formData);
-  setLoading(false);
-  setResponse(data)
-  // data.status==='success' && fetchExpenses();
+  dispatch(setResponse(data));
+  data.status==='success' && dispatch(fetchExpenses());
 }

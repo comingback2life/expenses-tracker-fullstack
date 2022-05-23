@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
-import {  Button, ListGroup } from 'react-bootstrap';
+import {  Alert, Button, ListGroup, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import {fetchExpenses} from '../../pages/dashboard/dashboardAction';
+
 
 export const ExpensesTable = ({ handleOnDeleteClick }) => {
   const dispatch = useDispatch();
@@ -9,11 +10,16 @@ export const ExpensesTable = ({ handleOnDeleteClick }) => {
     dispatch(fetchExpenses());
   },[])
 
-const {expenses} =useSelector(state=>state.dashboard)
+const {expenses,isLoading,res} =useSelector(state=>state.dashboard)
   const total=expenses.reduce((acc,item)=>acc+item.amount,0)
 
   return (
     <div>
+ 
+      {isLoading && <Spinner animation= "border" variant="primary"/>}
+      {
+        res?.message &&      <Alert variant={res.status==="success" ? 'success':'danger'}>{res?.message}</Alert>
+      }
       <ListGroup variant="flush mt-5 mb-5">
       <ListGroup.Item className='fw-bold'>
             <span className="title">Expenses Title</span>

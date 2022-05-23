@@ -21,7 +21,9 @@ const dashboardSlice = createSlice({
       state.isLoading=false;
     },
     setExpenses:(state,{payload=[]})=>{
+      state.isLoading=false;
       state.expenses=payload;
+
     }
   }
 })
