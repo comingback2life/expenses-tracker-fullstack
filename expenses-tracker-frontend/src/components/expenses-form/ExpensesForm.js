@@ -29,6 +29,7 @@ export const ExpensesForm = () => {
   return (
     <div>
       <Form onSubmit ={handleOnSubmit}>
+     
       <Row className='bg-light g-3 mt-3 mb-3 p-4 border rounded-top'>
         <Col md={4}>
           <Form.Control 

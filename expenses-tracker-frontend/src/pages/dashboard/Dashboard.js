@@ -30,11 +30,7 @@ export const Dashboard = () => {
 
  
 
-  const handleOnDeleteClick= async (postID)=>{
-    if(!window.confirm("Do you really want to delete ?")) return;
-    const {data} = await deleteExpense(postID);
-    // data?.status==="success" && fetchExpenses();
-  }
+  
   return (
     <MainLayout>
       <h4 className='display-7 mt-5 mb-3'>Dashboard</h4>
@@ -51,7 +47,7 @@ export const Dashboard = () => {
         </Col>
       </Row>
       <ExpensesForm/>
-      <ExpensesTable handleOnDeleteClick={handleOnDeleteClick}/>
+      <ExpensesTable/>
     </MainLayout>
   )
 }
