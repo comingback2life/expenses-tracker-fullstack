@@ -6,3 +6,10 @@ export const fetchExpenses =  () => async (dispatch) =>{
     data.status==="success" && dispatch(setExpenses(data.getUserExpenses));
   // data?.status==='success' && setExpensesList(data.getUserExpenses)
 }
+export const handleOnPostData = (formData)=> async dispatch=>{
+  setLoading(true);
+  const {data} = await postExpenses(formData);
+  setLoading(false);
+  setResponse(data)
+  // data.status==='success' && fetchExpenses();
+}
