@@ -11,7 +11,7 @@ export const Dashboard = () => {
     message: ""
   });
 
-  const [expensesList,setExpensesList]= useState([]);
+  // const [expensesList,setExpensesList]= useState([]);
 
 
   const [loading,setLoading]=useState(false);
@@ -23,7 +23,7 @@ export const Dashboard = () => {
     if(!user?._id){
       navigate('/');
     }
-    fetchExpenses();
+    // fetchExpenses();
   },[navigate])
 
 
@@ -33,17 +33,13 @@ export const Dashboard = () => {
     const {data} = await postExpenses(formData);
     setLoading(false);
     setResponse(data)
-    data.status==='success' && fetchExpenses();
+    // data.status==='success' && fetchExpenses();
   }
 
-  const fetchExpenses = async () =>{
-      const {data} = await getUserExpenses();
-      data?.status==='success' && setExpensesList(data.getUserExpenses)
-  }
   const handleOnDeleteClick= async (postID)=>{
     if(!window.confirm("Do you really want to delete ?")) return;
     const {data} = await deleteExpense(postID);
-    data?.status==="success" && fetchExpenses();
+    // data?.status==="success" && fetchExpenses();
   }
   return (
     <MainLayout>
@@ -61,7 +57,7 @@ export const Dashboard = () => {
         </Col>
       </Row>
       <ExpensesForm handleOnPostData={handleOnPostData}/>
-      <ExpensesTable expensesList={expensesList} handleOnDeleteClick={handleOnDeleteClick}/>
+      <ExpensesTable handleOnDeleteClick={handleOnDeleteClick}/>
     </MainLayout>
   )
 }

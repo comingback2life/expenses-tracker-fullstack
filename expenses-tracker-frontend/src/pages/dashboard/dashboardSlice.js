@@ -15,6 +15,17 @@ const dashboardSlice = createSlice({
   reducers:{
     requestPending: (state) => {
       state.isLoading=true;
+    },
+    setResponse:(state,{payload})=>{ //payLoad comes with action.
+      state.res=payload;
+      state.isLoading=false;
+    },
+    setExpenses:(state,{payload=[]})=>{
+      state.expenses=payload;
     }
   }
 })
+
+const {reducer,actions}=dashboardSlice;
+const {requestPending,setResponse,setExpenses}=actions;
+export default reducer;

@@ -1,8 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {  Button, ListGroup } from 'react-bootstrap';
-export const ExpensesTable = ({ expensesList,handleOnDeleteClick }) => {
+import { useDispatch, useSelector } from 'react-redux';
+import {fetchExpenses} from '../../pages/dashboard/dashboardAction';
 
-  const total=expensesList.reduce((acc,item)=>acc+item.amount,0)
+export const ExpensesTable = ({ handleOnDeleteClick }) => {
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(fetchExpenses());
+  },[])
+
+const {expenses} =useSelector(state=>state.dashboard)
+  const total=expenses.reduce((acc,item)=>acc+item.amount,0)
 
   return (
     <div>
@@ -12,7 +20,7 @@ export const ExpensesTable = ({ expensesList,handleOnDeleteClick }) => {
             <span className="amount">Expenses Amount</span>
           </ListGroup.Item>
         {
-          expensesList.map((el, i) => (
+          expenses.map((el, i) => (
             <ListGroup.Item key={i}>
             <span className="title">{el.name}</span>
             <span className="amount">${el.amount}</span>
