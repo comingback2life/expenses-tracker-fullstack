@@ -18,7 +18,7 @@ export const ExpensesTable = () => {
     dispatch(handleOnDeleteExpenses(postIDs));
   }
   const handleOnSelect = e=>{
-    const{name,value,checked} = e.target;
+    const{value,checked} = e.target;
     checked ? setIds([...ids,value]): setIds(ids.filter(id=>id!==value)); //the value that does not match
 
   }

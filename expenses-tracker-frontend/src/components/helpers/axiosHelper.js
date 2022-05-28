@@ -36,7 +36,6 @@ export const postExpenses = async formData =>{
     });
     return data;
   }catch(error){
-    console.log(error.message);
     return {
       data:{
         status:"Error",
@@ -56,7 +55,6 @@ export const getUserExpenses = async () =>{
     });
     return data;
   }catch(error){
-    console.log(error.message);
     return {
       data:{
         status:"Error",

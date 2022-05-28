@@ -38,7 +38,6 @@ try{
     message:"Error creating expenses, please try again"
   })
 }catch(error){
-  console.log(error)
   res.json({
     status:"Error",
     message:error.message
@@ -51,7 +50,6 @@ try{
 router.delete('/',async (req,res)=>{
     try{
       const ids = req.body; //item ids
-      console.log(ids)
       const {authorization}= req.headers; 
     const expensesToDelete = await deleteManyExpense(authorization,ids);
     expensesToDelete?.deletedCount? res.json({

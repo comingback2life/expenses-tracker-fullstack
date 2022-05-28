@@ -5,6 +5,7 @@ import { ExpensesForm } from '../../components/expenses-form/ExpensesForm';
 import { ExpensesTable } from '../../components/expenses-form/ExpensesTable';
 import { getUserExpenses, postExpenses,deleteExpense } from '../../components/helpers/axiosHelper';
 import { Alert, Col, Row, Spinner } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 export const Dashboard = () => {
   const [response, setResponse] = useState({
     status:"",
@@ -16,7 +17,7 @@ export const Dashboard = () => {
 
   const [loading,setLoading]=useState(false);
   const navigate =useNavigate();
-
+  const {isLoading,res} =useSelector(state=>state.dashboard)
 
   useEffect(()=>{
     const user = JSON.parse(sessionStorage.getItem('user'));
@@ -37,13 +38,6 @@ export const Dashboard = () => {
       <hr/>
       <Row className='mb-5'>
         <Col>
-      
-      {
-        loading && <Spinner variant='primary' animation='border'></Spinner>
-      }
-      {
-        response?.message && <Alert variant={response.status ==="success" ? "success":"danger"}>{response?.message}</Alert>
-      }
         </Col>
       </Row>
       <ExpensesForm/>
