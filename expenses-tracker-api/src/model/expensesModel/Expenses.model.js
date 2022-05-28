@@ -15,3 +15,6 @@ export const getExpenses = (filter)=>{
 export const deleteExpense = (filter)=>{
   return expensesList.findOneAndDelete(filter);
 }
+export const deleteManyExpense = (userId,itemIds,)=>{
+  return expensesList.deleteMany({userId,_id:{$in:itemIds}})
+}

@@ -68,10 +68,11 @@ export const getUserExpenses = async () =>{
 export const deleteExpense = async (postIds)=>{
   try{
     const user = JSON.parse(sessionStorage.getItem('user'));
-    const data = await axios.delete(expensesAPI ,{data:postIds},{
+    const data = await axios.delete(expensesAPI ,{
       headers:{
         Authorization: user._id
-      }
+      },
+      data:postIds // needs data inside the object -- specific only for the delete method
     })
     return data;
   }catch(error){

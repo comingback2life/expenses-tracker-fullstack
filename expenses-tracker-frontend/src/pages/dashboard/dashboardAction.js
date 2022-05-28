@@ -3,7 +3,6 @@ import {requestPending, setExpenses, setResponse} from './dashboardSlice';
 export const fetchExpenses =  () => async (dispatch) =>{
   dispatch(requestPending());
   const {data} = await getUserExpenses();
-  console.log(data)
     data.status==="success" && dispatch(setExpenses(data.getUserExpenses));
   // data?.status==='success' && setExpensesList(data.getUserExpenses)
 }

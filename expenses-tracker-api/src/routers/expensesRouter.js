@@ -1,5 +1,5 @@
 import express from 'express';
-import { createExpense, deleteExpense, getExpenses } from '../model/expensesModel/Expenses.model.js';
+import { createExpense, deleteExpense, deleteManyExpense, getExpenses } from '../model/expensesModel/Expenses.model.js';
 const router = express.Router();
 
 //get 
@@ -48,12 +48,13 @@ try{
 
 //delete
 
-router.delete('/:_id',async (req,res)=>{
+router.delete('/',async (req,res)=>{
     try{
-      const {_id} = req.params;
+      const ids = req.body; //item ids
+      console.log(ids)
       const {authorization}= req.headers; 
-    const expensesToDelete = await deleteExpense({userID:authorization,_id});
-      expensesToDelete ? res.json({
+    const expensesToDelete = await deleteManyExpense(authorization,ids);
+    expensesToDelete?.deletedCount? res.json({
       status:"success",
       message:"Deleted Expenses Successfully"
     }):

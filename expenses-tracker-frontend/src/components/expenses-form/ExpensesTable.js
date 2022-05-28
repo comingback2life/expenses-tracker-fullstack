@@ -22,7 +22,6 @@ export const ExpensesTable = () => {
     checked ? setIds([...ids,value]): setIds(ids.filter(id=>id!==value)); //the value that does not match
 
   }
-  console.log(ids);
 
 const {expenses,isLoading,res} =useSelector(state=>state.dashboard)
   const total=expenses.reduce((acc,item)=>acc+item.amount,0)
@@ -32,7 +31,7 @@ const {expenses,isLoading,res} =useSelector(state=>state.dashboard)
  
       {isLoading && <Spinner animation= "border" variant="primary"/>}
       {
-        res?.message &&      <Alert variant={res.status==="success" ? 'success':'danger'}>{res?.message}</Alert>
+        res?.message && <Alert variant={res.status==="success" ? 'success':'danger'}>{res?.message}</Alert>
       }
       <ListGroup variant="flush mt-5 mb-5">
       <ListGroup.Item className='fw-bold'>
@@ -62,7 +61,7 @@ const {expenses,isLoading,res} =useSelector(state=>state.dashboard)
 
       </ListGroup>
       <div className="mb-2 text-end">
-      {ids.length>0 && <Button variant="danger" onClick = {handleOnDeleteClick}>Delete Selected Expenses</Button>}
+      {ids.length>0 && <Button variant="danger" onClick = {()=>handleOnDeleteClick(ids)}>Delete Selected Expenses</Button>}
       </div>
      
     </div>
