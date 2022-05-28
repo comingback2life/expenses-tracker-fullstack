@@ -19,8 +19,8 @@ export const ExpensesTable = () => {
   }
   const handleOnSelect = e=>{
     const{name,value,checked} = e.target;
-    checked ? setIds([...ids,value]): setIds(ids.filter(id=>id!==value));
-    console.log(checked,value)
+    checked ? setIds([...ids,value]): setIds(ids.filter(id=>id!==value)); //the value that does not match
+
   }
   console.log(ids);
 
@@ -46,7 +46,7 @@ const {expenses,isLoading,res} =useSelector(state=>state.dashboard)
             <span className="title mx-3">{el.name}</span>
             </span>
             <span className="amount">${el.amount}</span>
-            <Button onClick={()=>handleOnDeleteClick(el._id)}>Delete Me</Button>
+            <Button onClick={()=>handleOnDeleteClick([el._id])}>Delete Me</Button>
           </ListGroup.Item>
           )
             
@@ -61,6 +61,10 @@ const {expenses,isLoading,res} =useSelector(state=>state.dashboard)
         </ListGroup.Item>
 
       </ListGroup>
+      <div className="mb-2 text-end">
+      {ids.length>0 && <Button variant="danger" onClick = {handleOnDeleteClick}>Delete Selected Expenses</Button>}
+      </div>
+     
     </div>
   );
 };

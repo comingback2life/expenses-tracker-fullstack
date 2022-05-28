@@ -65,10 +65,10 @@ export const getUserExpenses = async () =>{
     }
   }
 }
-export const deleteExpense = async (postID)=>{
+export const deleteExpense = async (postIds)=>{
   try{
     const user = JSON.parse(sessionStorage.getItem('user'));
-    const data = await axios.delete(expensesAPI + "/" + postID,{
+    const data = await axios.delete(expensesAPI ,{data:postIds},{
       headers:{
         Authorization: user._id
       }
