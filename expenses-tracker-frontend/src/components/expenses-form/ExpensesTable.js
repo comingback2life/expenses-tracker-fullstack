@@ -5,6 +5,7 @@ import {fetchExpenses, handleOnDeleteExpenses} from '../../pages/dashboard/dashb
 
 
 export const ExpensesTable = () => {
+  const [show,setShow]= useState(true)
   const dispatch = useDispatch();
 
   useEffect(()=>{
@@ -31,7 +32,7 @@ const {expenses,isLoading,res} =useSelector(state=>state.dashboard)
  
       {isLoading && <Spinner animation= "border" variant="primary"/>}
       {
-        res?.message && <Alert variant={res.status==="success" ? 'success':'danger'}>{res?.message}</Alert>
+     show && res?.message &&  <Alert variant={res.status==="success" ? 'success':'danger'} onClick = {()=>setShow(false)} dismissible>{res?.message}</Alert>
       }
       <ListGroup variant="flush mt-5 mb-5">
       <ListGroup.Item className='fw-bold'>
