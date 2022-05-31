@@ -1,5 +1,5 @@
 import React ,{useState} from 'react'
-import { Button, Col, Form, Row } from 'react-bootstrap';
+import { Button, Col, Dropdown, Form, Row } from 'react-bootstrap';
 import { handleOnPostData } from '../../pages/dashboard/dashboardAction';
 import { useDispatch } from 'react-redux';
 const initialState = {
@@ -31,6 +31,13 @@ export const ExpensesForm = () => {
       <Form onSubmit ={handleOnSubmit}>
      
       <Row className='bg-light g-3 mt-3 mb-3 p-4 border rounded-top'>
+        <Col md={2}>
+        <Form.Select aria-label="Default select example">
+  <option>Entry type </option>
+  <option value="1">Income</option>
+  <option value="2">Expenditure</option>
+</Form.Select>
+        </Col>
         <Col md={4}>
           <Form.Control 
           type="text"
@@ -55,7 +62,7 @@ export const ExpensesForm = () => {
             
           </Form.Control>
         </Col>
-        <Col md={4}>
+        <Col md={3}>
           <Form.Control 
           type="date"
           className="form-control"

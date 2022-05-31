@@ -6,17 +6,21 @@ import {fetchExpenses, handleOnDeleteExpenses} from '../../pages/dashboard/dashb
 
 export const ExpensesTable = () => {
   const [show,setShow]= useState(true)
+  const {expenses,isLoading,res} =useSelector(state=>state.dashboard)
+  const [ids,setIds]= useState([]);
   const dispatch = useDispatch();
 
   useEffect(()=>{
     dispatch(fetchExpenses());
-  },[])
+    res.status==="success"&&setIds([]);
+  },[res])
 
-  const [ids,setIds]= useState([]);
+
 
   const handleOnDeleteClick= async (postIDs)=>{
     if(!window.confirm("Do you really want to delete ?")) return;
     dispatch(handleOnDeleteExpenses(postIDs));
+    
   }
   const handleOnSelect = e=>{
     const{value,checked} = e.target;
@@ -24,7 +28,7 @@ export const ExpensesTable = () => {
 
   }
 
-const {expenses,isLoading,res} =useSelector(state=>state.dashboard)
+
   const total=expenses.reduce((acc,item)=>acc+item.amount,0)
 
   return (
@@ -41,7 +45,7 @@ const {expenses,isLoading,res} =useSelector(state=>state.dashboard)
           </ListGroup.Item>
         {
           expenses.map((el, i) => (
-            <ListGroup.Item key={i}>
+            <ListGroup.Item key={i._id+"asd"+i}>
             <span className='d-flex'> <FormCheck type='checkbox' className='mr-2' onClick={handleOnSelect} value={el._id}></FormCheck>
             <span className="title mx-3">{el.name}</span>
             </span>
