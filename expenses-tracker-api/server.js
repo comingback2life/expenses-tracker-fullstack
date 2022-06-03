@@ -1,12 +1,15 @@
+import 'dotenv/config';
 import express from 'express';
-
+import path from 'path';
 const app = express();
 const PORT = process.env.PORT || 8000; //use the port from process env or if falsey value then use 8000.
 
 //Middleware
 import cors from 'cors';
 import morgan from 'morgan';
+const __dirname = path.resolve();
 
+app.use(express.static(path.resolve(__dirname,"./expenses-tracker-frontend/build")))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,8 +27,9 @@ import { useAuth } from './src/middleware/authMD.js';
 
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/expenses',useAuth,expensesRouter);
+
 app.get('*', (req, res) => {
-  res.sendFile(`${__dirname}/public/index.html`)
+  res.sendFile(path.resolve(__dirname,"./expenses-tracker-frontend/build",index.html));
 });
 
 app.listen(PORT, (error) => {

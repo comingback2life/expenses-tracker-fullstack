@@ -17,7 +17,7 @@ export const MainLayout = ({children}) => {
       <br/>
       username: admin@admin.com
       <br/>
-      password : admin</p>
+      password : admin123</p>
     <footer className="footer bg-dark text-light p-5 text-center">
       &copy; All rights reserved. Built with ❤️ by Samip
     </footer>
