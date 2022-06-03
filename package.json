@@ -2,13 +2,13 @@
   "name": "expenses-tracker-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon expenses-tracker-api/server.js",
     "start": "node expenses-tracker-api/server.js",
-    "heroku_postbuild": "cd expenses-tracker-frontend && npm install && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "heroku-postbuild": "npm install --prefix expenses-tracker-frontend && npm run build --prefix expenses-tracker-frontend"
   },
   "keywords": [],
   "author": "",
