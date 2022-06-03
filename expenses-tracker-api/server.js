@@ -25,7 +25,7 @@ import { useAuth } from './src/middleware/authMD.js';
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/expenses',useAuth,expensesRouter);
 app.get('*', (req, res) => {
-  res.status(404).send(`<h1>404, not found</h1>`);
+  res.sendFile(`${__dirname}/public/index.html`)
 });
 
 app.listen(PORT, (error) => {
