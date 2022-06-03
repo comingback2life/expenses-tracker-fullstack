@@ -9,7 +9,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 const __dirname = path.resolve();
 
-app.use(express.static(path.resolve(__dirname,"./expenses-tracker-frontend/build")))
+app.use(express.static(path.resolve(__dirname,"expenses-tracker-frontend/build")))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -29,7 +29,7 @@ app.use('/api/v1/user', userRouter);
 app.use('/api/v1/expenses',useAuth,expensesRouter);
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname,"./expenses-tracker-frontend/build",'index.html'));
+  res.sendFile(path.resolve(__dirname, "expenses-tracker-frontend/build/index.html"));
 });
 
 app.listen(PORT, (error) => {
