@@ -1,9 +1,8 @@
 import { deleteExpense, getUserExpenses,postExpenses} from "../../components/helpers/axiosHelper";
 import {requestPending, setExpenses, setResponse} from './dashboardSlice';
-export const fetchExpenses =  (btnName) => async (dispatch) =>{
+export const fetchExpenses =  () => async (dispatch) =>{
   dispatch(requestPending());
   const {data} = await getUserExpenses();
-  console.log(data);
     data.status==="success" && dispatch(setExpenses(data.getUserExpenses));
   // data?.status==='success' && setExpensesList(data.getUserExpenses)
 }

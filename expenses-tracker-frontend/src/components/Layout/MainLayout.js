@@ -13,7 +13,11 @@ export const MainLayout = ({children}) => {
         </Container>
  
       </main>
-
+      <p className='text-muted text-center'> Looking to try out ? 
+      <br/>
+      username: admin@admin.com
+      <br/>
+      password : admin</p>
     <footer className="footer bg-dark text-light p-5 text-center">
       &copy; All rights reserved. Built with ❤️ by Samip
     </footer>
