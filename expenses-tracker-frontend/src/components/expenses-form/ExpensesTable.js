@@ -22,6 +22,10 @@ export const ExpensesTable = () => {
     dispatch(handleOnDeleteExpenses(postIDs));
     
   }
+  const filterOnClick = (e)=>{  
+  e.target.name && console.log(expenses.filter(el=>el.type==e.target.name));
+      dispatch(fetchExpenses(e.target.name));
+  }
   const handleOnSelect = e=>{
     const{value,checked} = e.target;
     checked ? setIds([...ids,value]): setIds(ids.filter(id=>id!==value)); //the value that does not match
@@ -38,6 +42,11 @@ export const ExpensesTable = () => {
       {
      show && res?.message &&  <Alert variant={res.status==="success" ? 'success':'danger'} onClick = {()=>setShow(false)} dismissible>{res?.message}</Alert>
       }
+
+      <button className='btn btn-primary mx-2' onClick={filterOnClick} >All</button>
+      <button className='btn btn-success' onClick={filterOnClick} name='income'>Income</button>
+      <button className='btn btn-danger mx-2' onClick={filterOnClick} name='expenditure'>Expenditure</button>
+ 
       <ListGroup variant="flush mt-5 mb-5">
       <ListGroup.Item className='fw-bold'>
             <span className="title">Expenses Title</span>
@@ -49,7 +58,7 @@ export const ExpensesTable = () => {
             <span className='d-flex'> <FormCheck type='checkbox' className='mr-2' onClick={handleOnSelect} value={el._id}></FormCheck>
             <span className="title mx-3">{el.name}</span>
             </span>
-            <span className="amount">${el.amount}</span>
+            {el.type==="expenditure"?  <span className="amount">-${el.amount}</span> :<span className="amount">${el.amount}</span>}
             <Button onClick={()=>handleOnDeleteClick([el._id])}>Delete Me</Button>
           </ListGroup.Item>
           )
@@ -58,7 +67,7 @@ export const ExpensesTable = () => {
         }
           
         <ListGroup.Item className='fw-bold'>
-          <span className="total">Total</span>
+          <span className="total">Total Money Flow</span>
       
           <span className="amount">${total}
 </span>

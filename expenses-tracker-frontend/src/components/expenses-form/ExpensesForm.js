@@ -14,6 +14,7 @@ export const ExpensesForm = () => {
 
   const handleOnChange = (e)=>{
     const {name,value}=e.target;
+    console.log(name)
     setFormData({
       ...formData,
       [name]:value,
@@ -21,8 +22,8 @@ export const ExpensesForm = () => {
   }
 
   const handleOnSubmit = (e)=>{
-    e.preventDefault();
-    dispatch(handleOnPostData(formData));
+    e.preventDefault(); 
+   dispatch(handleOnPostData(formData));
   }
 
  
@@ -32,10 +33,10 @@ export const ExpensesForm = () => {
      
       <Row className='bg-light g-3 mt-3 mb-3 p-4 border rounded-top'>
         <Col md={2}>
-        <Form.Select aria-label="Type" name="type" required>
-  <option>Select one </option>
-  <option value="1" name="income">Income</option>
-  <option value="2" name="expenditure">Expenditure</option>
+        <Form.Select aria-label="Select Type" name="type" onChange={handleOnChange} required>
+  <option >Open this select menu</option>
+  <option value="income">Income</option>
+  <option value="expenditure">Expenses</option>
 </Form.Select>
         </Col>
         <Col md={4}>
