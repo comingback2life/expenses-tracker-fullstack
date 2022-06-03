@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon expenses-tracker-api/server.js",
     "start": "node expenses-tracker-api/server.js",
-    "heroku_postbuild": "cd expenses-tracker-frontend && npm install && npm run build",
+    "heroku-postbuild": "cd expenses-tracker-frontend && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
