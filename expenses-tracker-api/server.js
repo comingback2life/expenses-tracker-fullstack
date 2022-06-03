@@ -29,7 +29,7 @@ app.use('/api/v1/user', userRouter);
 app.use('/api/v1/expenses',useAuth,expensesRouter);
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname,"./expenses-tracker-frontend/build","index.html"));
+  res.sendFile(path.resolve(__dirname,"./expenses-tracker-frontend/build"));
 });
 
 app.listen(PORT, (error) => {
